@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VCardsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="VCardsModelStoreContainer">
+          <EntitySet Name="Tags" EntityType="VCardsModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TagsWords" EntityType="VCardsModel.Store.TagsWords" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="VCardsModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Words" EntityType="VCardsModel.Store.Words" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Tags_Users" Association="VCardsModel.Store.FK_Tags_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagsWords_Tags" Association="VCardsModel.Store.FK_TagsWords_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="TagsWords" EntitySet="TagsWords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagsWords_Words" Association="VCardsModel.Store.FK_TagsWords_Words">
+            <End Role="Words" EntitySet="Words" />
+            <End Role="TagsWords" EntitySet="TagsWords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Words_Users" Association="VCardsModel.Store.FK_Words_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Words" EntitySet="Words" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TagsWords">
+          <Key>
+            <PropertyRef Name="WordId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="WordId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="Points" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Tocken" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="LastName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Words">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Uid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Word" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Translation" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SucceedsCount" Type="int" Nullable="false" />
+          <Property Name="FailsCount" Type="int" Nullable="false" />
+          <Property Name="IsIdiom" Type="bit" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tags_Users">
+          <End Role="Users" Type="VCardsModel.Store.Users" Multiplicity="1" />
+          <End Role="Tags" Type="VCardsModel.Store.Tags" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagsWords_Tags">
+          <End Role="Tags" Type="VCardsModel.Store.Tags" Multiplicity="1" />
+          <End Role="TagsWords" Type="VCardsModel.Store.TagsWords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TagsWords">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagsWords_Words">
+          <End Role="Words" Type="VCardsModel.Store.Words" Multiplicity="1" />
+          <End Role="TagsWords" Type="VCardsModel.Store.TagsWords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Words">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TagsWords">
+              <PropertyRef Name="WordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Words_Users">
+          <End Role="Users" Type="VCardsModel.Store.Users" Multiplicity="1" />
+          <End Role="Words" Type="VCardsModel.Store.Words" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Words">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VCardsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VCardsEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Tags" EntityType="VCardsModel.Tag" />
+          <EntitySet Name="Users" EntityType="VCardsModel.User" />
+          <EntitySet Name="Words" EntityType="VCardsModel.Word" />
+          <AssociationSet Name="FK_Tags_Users" Association="VCardsModel.FK_Tags_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Words_Users" Association="VCardsModel.FK_Words_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Words" EntitySet="Words" />
+          </AssociationSet>
+          <AssociationSet Name="TagsWords" Association="VCardsModel.TagsWords">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Words" EntitySet="Words" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Tag1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="User" Relationship="VCardsModel.FK_Tags_Users" FromRole="Tags" ToRole="Users" />
+          <NavigationProperty Name="Words" Relationship="VCardsModel.TagsWords" FromRole="Tags" ToRole="Words" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Points" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Tocken" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="LastName" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Tag" Relationship="VCardsModel.FK_Tags_Users" FromRole="Users" ToRole="Tags" />
+          <NavigationProperty Name="Word" Relationship="VCardsModel.FK_Words_Users" FromRole="Users" ToRole="Words" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Uid" Type="Guid" Nullable="false" />
+          <Property Name="Word1" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Translation" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="SucceedsCount" Type="Int32" Nullable="false" />
+          <Property Name="FailsCount" Type="Int32" Nullable="false" />
+          <Property Name="IsIdiom" Type="Boolean" Nullable="false" />
+          <Property Name="ModifyDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="VCardsModel.FK_Words_Users" FromRole="Words" ToRole="Users" />
+          <NavigationProperty Name="Tags" Relationship="VCardsModel.TagsWords" FromRole="Words" ToRole="Tags" />
+        </EntityType>
+        <Association Name="FK_Tags_Users">
+          <End Role="Users" Type="VCardsModel.User" Multiplicity="1" />
+          <End Role="Tags" Type="VCardsModel.Tag" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Words_Users">
+          <End Role="Users" Type="VCardsModel.User" Multiplicity="1" />
+          <End Role="Words" Type="VCardsModel.Word" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Words">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TagsWords">
+          <End Role="Tags" Type="VCardsModel.Tag" Multiplicity="*" />
+          <End Role="Words" Type="VCardsModel.Word" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VCardsModelStoreContainer" CdmEntityContainer="VCardsEntities">
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="VCardsModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tag1" ColumnName="Tag" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="VCardsModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Tocken" ColumnName="Tocken" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Words">
+            <EntityTypeMapping TypeName="VCardsModel.Word">
+              <MappingFragment StoreEntitySet="Words">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="Word1" ColumnName="Word" />
+                <ScalarProperty Name="Translation" ColumnName="Translation" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SucceedsCount" ColumnName="SucceedsCount" />
+                <ScalarProperty Name="FailsCount" ColumnName="FailsCount" />
+                <ScalarProperty Name="IsIdiom" ColumnName="IsIdiom" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TagsWords" TypeName="VCardsModel.TagsWords" StoreEntitySet="TagsWords">
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="Id" ColumnName="TagId" />
+            </EndProperty>
+            <EndProperty Name="Words">
+              <ScalarProperty Name="Id" ColumnName="WordId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
