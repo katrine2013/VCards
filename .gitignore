@@ -2,7 +2,6 @@ bin
 obj
 *Logs*
 *ReSharper*
-packages
 log
 *.pyc
 *.db
