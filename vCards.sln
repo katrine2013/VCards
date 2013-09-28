@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vCards", "vCards\vCards.csproj", "{FD8E3AF0-8813-4352-A75A-C29CCA9E0F36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VCardsDbConnection", "VCardsDbConnection\VCardsDbConnection.csproj", "{47551F78-F010-42EE-83EF-1A7D3AE05EB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{FD8E3AF0-8813-4352-A75A-C29CCA9E0F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD8E3AF0-8813-4352-A75A-C29CCA9E0F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD8E3AF0-8813-4352-A75A-C29CCA9E0F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47551F78-F010-42EE-83EF-1A7D3AE05EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47551F78-F010-42EE-83EF-1A7D3AE05EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47551F78-F010-42EE-83EF-1A7D3AE05EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47551F78-F010-42EE-83EF-1A7D3AE05EB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
