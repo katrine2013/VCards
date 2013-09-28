@@ -1,0 +1,25 @@
+﻿@model VCardsMVC4.Models.AddWordModel
+@{
+    ViewBag.Title = "Words";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>@Resources.Resource.AddWord</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Word)
+                @Html.TextBoxFor(m => m.Word)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Translation)
+                @Html.TextBoxFor(m => m.Translation)
+            </li>
+        </ol>
+        <input type="submit" value="@Resources.Resource.SubmitButtonText" />
+    </fieldset>
+}

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model VCardsMVC4.Models.User
+@{
     ViewBag.Title = "Contact";
 }
 
@@ -8,12 +9,13 @@
 </hgroup>
 
 <section class="contact">
+       
     <header>
-        <h3>Phone</h3>
+        <h3>Names</h3>
     </header>
     <p>
-        <span class="label">Main:</span>
-        <span>425.555.0100</span>
+        <span class="label">@Resources.Resource.Name:</span>
+        <span>@Model.Name</span>
     </p>
     <p>
         <span class="label">After Hours:</span>
@@ -23,28 +25,33 @@
 
 <section class="contact">
     <header>
-        <h3>Email</h3>
+        <h3>@Resources.Resource.Tag</h3>
     </header>
-    <p>
-        <span class="label">Support:</span>
-        <span><a href="mailto:Support@example.com">Support@example.com</a></span>
-    </p>
-    <p>
-        <span class="label">Marketing:</span>
-        <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
-    </p>
-    <p>
-        <span class="label">General:</span>
-        <span><a href="mailto:General@example.com">General@example.com</a></span>
-    </p>
+   @* @foreach (var item in Model.TagList) {
+        <ol>
+            <li>
+                @Html.DisplayFor(modelItem => item.Tag1)
+            </li>
+        </ol>
+    }*@
 </section>
 
 <section class="contact">
+   
     <header>
-        <h3>Address</h3>
+        <h3>@Resources.Resource.Language: </h3>
     </header>
     <p>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399
+        @Model.Language<br />
+         @using (Html.BeginForm("ChangeCulture", "Home"))
+                { 
+                    <select name="lang">
+                        <option disabled selected>@Resources.Resource.Language</option>
+                        <option value="ru">Русский</option>
+                        <option value="en">English</option>
+                    </select>
+                  <input name="id" hidden value="@Model.Id"/>
+                    <button type="submit">@Resources.Resource.SubmitButtonText</button>
+                }
     </p>
 </section>

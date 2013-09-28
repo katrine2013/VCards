@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Resources
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -16,13 +17,14 @@
                 </div>
                 <div class="float-right">
                     <section id="login">
-                        @Html.Partial("_LoginPartial")
+                         @*@Html.Partial("_LoginPartial")*@
+                        @Html.ActionLink("Home", "Index", "Home")
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink(@Resource.HomePage, "Index", "Home")</li>
+                            <li>@Html.ActionLink(@Resource.AddWord, "Words", "Home")</li>
+                            <li>@Html.ActionLink(@Resource.AboutYourAccount, "Contact", "Home")</li>
                         </ul>
                     </nav>
                 </div>

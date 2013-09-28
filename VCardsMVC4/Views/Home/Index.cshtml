@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 @section featured {
@@ -19,7 +20,41 @@
     </section>
 }
 <h3>We suggest the following:</h3>
-<ol class="round">
+            
+            <div>
+                @using (Html.BeginForm("ChangeCulture", "Home"))
+                { 
+                    <select name="lang">
+                        <option disabled selected>@Resources.Resource.Language</option>
+                        <option value="ru">Русский</option>
+                        <option value="en">English</option>
+                    </select>
+                    <button type="submit">@Resources.Resource.SubmitButtonText</button>
+                }
+            </div>
+@*<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Language)
+        </th>
+    </tr>
+ 
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+        </tr>
+    }
+</table>*@
+
+@*<ol class="round">
     <li class="one">
         <h5>Getting Started</h5>
         ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
@@ -42,4 +77,4 @@
         and price for your applications.
         <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
     </li>
-</ol>
+</ol>*@

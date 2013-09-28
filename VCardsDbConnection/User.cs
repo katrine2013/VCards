@@ -16,10 +16,11 @@ namespace VCardsDbConnection
     {
         public int Id { get; set; }
         public System.DateTime LastUpdate { get; set; }
-        public string Points { get; set; }
+        public int Points { get; set; }
         public System.Guid Tocken { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+        public string UILanguage { get; set; }
     
         public virtual Tag Tag { get; set; }
         public virtual Word Word { get; set; }
