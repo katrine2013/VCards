@@ -1,0 +1,12 @@
+bin
+obj
+*Logs*
+*ReSharper*
+packages
+log
+*.pyc
+*.db
+*.html
+*.suo
+*.user
+*.Cache
