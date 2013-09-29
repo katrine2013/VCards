@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изучаем языки играючи.
+        /// </summary>
+        public static string Advertisment {
+            get {
+                return ResourceManager.GetString("Advertisment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Главная страница.
         /// </summary>
         public static string HomePage {

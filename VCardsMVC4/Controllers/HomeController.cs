@@ -43,6 +43,27 @@ namespace VCardsMVC4.Controllers
             return View(new AddWordModel());
         }
 
+        [Authorize]
+        public ActionResult AllMyWords()
+        {
+            List<ViewWordModel> wordsList = new List<ViewWordModel>();
+            using (var db = new VCardsEntities())
+            {
+                int userId = Convert.ToInt32(User.Identity.Name);
+                var resultList = db.Words.Where(x => x.UserId == userId);
+                foreach (var word in resultList)
+                {
+                    wordsList.Add(new ViewWordModel()
+                                      {
+                                          
+                                          Word = word.Word1,
+                                          Translation = word.Translation
+                                      });
+                }
+            }
+            return View(wordsList);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Words(AddWordModel newWord)
@@ -61,10 +82,11 @@ namespace VCardsMVC4.Controllers
                                          Word1 = newWord.Word,
                                          Translation = newWord.Translation,
                                          Uid = Guid.NewGuid(),
-                                         UserId = 2
+                                         UserId = 1
                                      });
                     db.SaveChanges();
                 }
+                
             }
 
             return View(newWord);

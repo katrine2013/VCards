@@ -19,8 +19,9 @@
                 @Html.LabelFor(m => m.Translation)
                 @Html.TextBoxFor(m => m.Translation)
             </li>
-
         </ol>
         <input type="submit" value="@Resources.Resource.SubmitButtonText" />
     </fieldset>
 }
+
+@Html.ActionLink("See all", "AllMyWords", "Home")

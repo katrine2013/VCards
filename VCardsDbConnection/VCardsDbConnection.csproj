@@ -49,54 +49,59 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Db.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Db.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Db.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Db.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Db.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs">
-      <DependentUpon>Db.tt</DependentUpon>
+      <DependentUpon>VCardsEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>Db.tt</DependentUpon>
+      <DependentUpon>VCardsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VCardsEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VCardsEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VCardsEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VCardsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VCardsEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VCardsEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Word.cs">
-      <DependentUpon>Db.tt</DependentUpon>
+      <DependentUpon>VCardsEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
     <EntityDeploy Include="Db.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Db.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Db.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Db.edmx</DependentUpon>
-      <LastGenOutput>Db.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Db.edmx.diagram">
-      <DependentUpon>Db.edmx</DependentUpon>
-    </None>
-    <None Include="Db.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Db.edmx</DependentUpon>
-      <LastGenOutput>Db.cs</LastGenOutput>
-    </None>
+=======
+    <None Include="App.Config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="VCardsEntities.edmx">
+>>>>>>> 39fbf233e2bed31ba3a6eaa79cc6dc571adc9968
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VCardsEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="VCardsEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VCardsEntities.edmx</DependentUpon>
+      <LastGenOutput>VCardsEntities.Context.cs</LastGenOutput>
+    </None>
+    <None Include="VCardsEntities.edmx.diagram">
+      <DependentUpon>VCardsEntities.edmx</DependentUpon>
+    </None>
+    <None Include="VCardsEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VCardsEntities.edmx</DependentUpon>
+      <LastGenOutput>VCardsEntities.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -123,6 +123,9 @@
   <data name="AddWord" xml:space="preserve">
     <value>My words</value>
   </data>
+  <data name="Advertisment" xml:space="preserve">
+    <value>Study the language effortlessly</value>
+  </data>
   <data name="HomePage" xml:space="preserve">
     <value>Home</value>
   </data>

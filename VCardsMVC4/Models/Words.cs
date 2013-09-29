@@ -21,8 +21,19 @@ namespace VCardsMVC4.Models
         [Display(Name = "Translation", ResourceType = typeof(Resources.Resource))]
         public string Translation { get; set; }
 
+    }
+
+    public class ViewWordModel
+    {
+
+        [Display(Name = "Word", ResourceType = typeof(Resources.Resource))]
+        public string Word { get; set; }
+
+        [Display(Name = "Translation", ResourceType = typeof(Resources.Resource))]
+        public string Translation { get; set; }
+
         [Display(Name = "Tag", ResourceType = typeof(Resources.Resource))]
-        public IEnumerable<Tag> TagList { get; set; }
+        public string Tag { get; set; }
     }
 
     public class AddTagModel

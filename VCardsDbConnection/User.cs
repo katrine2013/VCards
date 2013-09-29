@@ -17,7 +17,6 @@ namespace VCardsDbConnection
         public User()
         {
             this.Tags = new HashSet<Tag>();
-            this.Words = new HashSet<Word>();
         }
     
         public int Id { get; set; }
@@ -30,6 +29,5 @@ namespace VCardsDbConnection
         public Nullable<System.Guid> SocialId { get; set; }
     
         public virtual ICollection<Tag> Tags { get; set; }
-        public virtual ICollection<Word> Words { get; set; }
     }
 }

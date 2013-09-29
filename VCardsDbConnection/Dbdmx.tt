@@ -1,8 +1,7 @@
 ﻿<#@ template language="C#" debug="false" hostspecific="true"#>
 <#@ include file="EF.Utility.CS.ttinclude"#><#@ 
  output extension=".cs"#><#
-
-const string inputFile = @"Db.edmx";
+const string inputFile = @"Dbdmx.edmx";
 var textTransform = DynamicTextTransformation.Create(this);
 var code = new CodeGenerationTools(this);
 var ef = new MetadataTools(this);
