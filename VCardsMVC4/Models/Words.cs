@@ -23,6 +23,19 @@ namespace VCardsMVC4.Models
 
     }
 
+    public class ViewWordModel
+    {
+
+        [Display(Name = "Word", ResourceType = typeof(Resources.Resource))]
+        public string Word { get; set; }
+
+        [Display(Name = "Translation", ResourceType = typeof(Resources.Resource))]
+        public string Translation { get; set; }
+
+        [Display(Name = "Tag", ResourceType = typeof(Resources.Resource))]
+        public string Tag { get; set; }
+    }
+
     public class AddTagModel
     {
         public int Id { get; set; }

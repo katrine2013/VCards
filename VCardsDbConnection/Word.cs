@@ -29,7 +29,6 @@ namespace VCardsDbConnection
         public bool IsIdiom { get; set; }
         public System.DateTime ModifyDate { get; set; }
     
-        public virtual User User { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
     }
 }

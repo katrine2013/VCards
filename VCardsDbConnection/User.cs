@@ -28,6 +28,5 @@ namespace VCardsDbConnection
         public string UILanguage { get; set; }
     
         public virtual ICollection<Tag> Tags { get; set; }
-        public virtual Word Word { get; set; }
     }
 }

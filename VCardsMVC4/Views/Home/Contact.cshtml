@@ -18,8 +18,7 @@
         <span>@Model.Name</span>
     </p>
     <p>
-        <span class="label">After Hours:</span>
-        <span>425.555.0199</span>
+
     </p>
 </section>
 
@@ -62,7 +61,7 @@
         <h3>@Resources.Resource.Language: </h3>
     </header>
     <p>
-        @Model.Language<br />
+       @* @Model.Language<br />*@
          @using (Html.BeginForm("ChangeCulture", "Home"))
                 { 
                     <select name="lang">

@@ -4,6 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using VCardsDbConnection;
+
 using System.Web.Security;
 using VCardsDbConnection;
 using VCardsMVC4.Filters;
@@ -19,8 +22,11 @@ namespace VCardsMVC4.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = @Resources.Resource.Advertisment;
-
+            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            using (var db = new VCardsEntities())
+            {
+                var T = db.Tags.FirstOrDefault();
+            }
             return View();
         }
 
@@ -31,11 +37,33 @@ namespace VCardsMVC4.Controllers
             return View();
         }
 
+
         public ActionResult Words()
         {
             ViewBag.Message = "Your app description page.";
 
             return View(new AddWordModel());
+        }
+
+        [Authorize]
+        public ActionResult AllMyWords()
+        {
+            List<ViewWordModel> wordsList = new List<ViewWordModel>();
+            using (var db = new VCardsEntities())
+            {
+                int userId = Convert.ToInt32(User.Identity.Name);
+                var resultList = db.Words.Where(x => x.UserId == userId);
+                foreach (var word in resultList)
+                {
+                    wordsList.Add(new ViewWordModel()
+                                      {
+                                          
+                                          Word = word.Word1,
+                                          Translation = word.Translation
+                                      });
+                }
+            }
+            return View(wordsList);
         }
 
         [HttpPost]
@@ -45,27 +73,20 @@ namespace VCardsMVC4.Controllers
             ViewBag.Message = "Your app description page.";
             if(ModelState.IsValid)
             {
-                try
+                using (var db = new VCardsEntities())
                 {
-                    using (VCardsEntities db = new VCardsEntities())
-                    {
-                        db.Words.Add(new Word()
-                        {
-                            FailsCount = 0,
-                            SucceedsCount = 0,
-                            IsIdiom = false,
-                            ModifyDate = DateTime.UtcNow,
-                            Word1 = newWord.Word,
-                            Translation = newWord.Translation,
-                            Uid = new Guid(),
-                            UserId = Convert.ToInt32(User.Identity.Name)
-                        });
-                        db.SaveChanges();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    
+                    db.Words.Add(new Word()
+                                     {
+                                         FailsCount = 0,
+                                         SucceedsCount = 0,
+                                         IsIdiom = false,
+                                         ModifyDate = DateTime.UtcNow,
+                                         Word1 = newWord.Word,
+                                         Translation = newWord.Translation,
+                                         Uid = Guid.NewGuid(),
+                                         UserId = 1
+                                     });
+                    db.SaveChanges();
                 }
                 
             }
