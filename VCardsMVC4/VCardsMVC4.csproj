@@ -168,6 +168,7 @@
     <Compile Include="Controllers\Api\WordsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JsonDotNetResult.cs" />
+    <Compile Include="Controllers\oauth2callbackController.cs" />
     <Compile Include="Controllers\Words1Controller.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -246,7 +247,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\vcards - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\vcards - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\vcards - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\vcards - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -263,7 +266,9 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -303,6 +308,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Words.cshtml" />
+    <Content Include="Views\oauth2callback\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

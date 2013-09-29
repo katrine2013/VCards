@@ -32,4 +32,7 @@ namespace VCardsDbConnection
         public virtual User User { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
     }
+
+
+
 }

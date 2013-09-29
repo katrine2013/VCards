@@ -103,6 +103,11 @@ namespace VCardsMVC4.Controllers.Api
                 if (user != null)
                 {
                     result = db.Words.Where(_=>_.UserId == user.Id).ToArray();
+                    if (result.Count()!=0)
+                    {
+                        var res = result.Select(_ => new {word = _.Word1, translate = _.Translation});
+                        return Json(res, JsonRequestBehavior.AllowGet);
+                    }
                 }
 
                 return Json(result, JsonRequestBehavior.AllowGet);
