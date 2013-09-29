@@ -27,13 +27,33 @@
     <header>
         <h3>@Resources.Resource.Tag</h3>
     </header>
-   @* @foreach (var item in Model.TagList) {
+    @foreach (var item in Model.TagList) {
         <ol>
             <li>
                 @Html.DisplayFor(modelItem => item.Tag1)
             </li>
         </ol>
-    }*@
+    }
+    @using (Html.BeginForm("AddTag", "Home"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>@Resources.Resource.AddWord</legend>
+        <ol>
+            <li>
+                <label>
+                    @Resources.Resource.Tag
+                </label>
+            </li>
+            <li>
+            <input name="tag" />
+                </li>
+        </ol>
+        <input type="submit" value="@Resources.Resource.SubmitButtonText" />
+    </fieldset>
+}
 </section>
 
 <section class="contact">

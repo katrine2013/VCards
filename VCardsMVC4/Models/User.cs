@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using VCardsDbConnection;
 
 namespace VCardsMVC4.Models
 {
@@ -20,7 +21,7 @@ namespace VCardsMVC4.Models
         [Display(Name = "Language", ResourceType = typeof(Resources.Resource))]
         public string Language { get; set; }
 
-        //[Display(Name = "Tag", ResourceType = typeof(Resources.Resource))]
-        //public IEnumerable<VCardsDbConnection.Tag> TagList { get; set; }
+        [Display(Name = "Tag", ResourceType = typeof(Resources.Resource))]
+        public IEnumerable<Tag> TagList { get; set; }
     }
 }

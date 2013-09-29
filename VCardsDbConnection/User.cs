@@ -14,6 +14,11 @@ namespace VCardsDbConnection
     
     public partial class User
     {
+        public User()
+        {
+            this.Tags = new HashSet<Tag>();
+        }
+    
         public int Id { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public int Points { get; set; }
@@ -22,7 +27,7 @@ namespace VCardsDbConnection
         public string LastName { get; set; }
         public string UILanguage { get; set; }
     
-        public virtual Tag Tag { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
         public virtual Word Word { get; set; }
     }
 }

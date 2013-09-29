@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -54,7 +55,8 @@ namespace VCardsMVC4.Controllers
                                          ModifyDate = DateTime.UtcNow,
                                          Word1 = newWord.Word,
                                          Translation = newWord.Translation,
-                                         Uid = new Guid()
+                                         Uid = new Guid(),
+                                         UserId = Convert.ToInt32(User.Identity.Name)
                                      });
                     db.SaveChanges();
                 }
@@ -68,20 +70,43 @@ namespace VCardsMVC4.Controllers
             ViewBag.Message = "Your contact page.";
             using (VCardsEntities db = new VCardsEntities())
             {
-                var user1 = db.Users.FirstOrDefault();
+                var user1 = db.Users.Include("Tags").FirstOrDefault();
 
                 if (user1 != null)
-                    return View(
-                        new Models.User()
+                {
+                    return View(new Models.User()
                         {
                             Language = user1.LastName,
                             Name = user1.Name,
-                            //TagList = db.Tags.Where(x=>x.UserId == user1.Id.ToString()),
+                            TagList = user1.Tags,
                             Id = user1.Id
                         });
+                }
             }
 
             return View(new Models.User());
+        }
+
+        [HttpPost]
+        public ActionResult AddTag (string tag)
+        {
+            string returnUrl = Request.UrlReferrer.AbsolutePath;
+            if(!String.IsNullOrEmpty(tag))
+            {
+                using (VCardsEntities db = new VCardsEntities())
+                {
+                    int userId = Convert.ToInt32(User.Identity.Name);
+                    if (db.Tags.FirstOrDefault(x => x.UserId == userId && x.Tag1 == tag) == null)
+                    {
+                        Tag tagAdd = new Tag();
+                        tagAdd.UserId = userId;
+                        tagAdd.Tag1 = tag;
+                        db.Tags.Add(tagAdd);
+                        db.SaveChanges();
+                    }
+                }
+            }
+            return Redirect(returnUrl);
         }
 
         public ActionResult ChangeCulture(string lang, int id)
