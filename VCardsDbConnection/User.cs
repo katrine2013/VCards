@@ -27,6 +27,7 @@ namespace VCardsDbConnection
         public string Name { get; set; }
         public string LastName { get; set; }
         public string UILanguage { get; set; }
+        public Nullable<System.Guid> SocialId { get; set; }
     
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Word> Words { get; set; }

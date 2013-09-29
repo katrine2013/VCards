@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VCardsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VCardsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="VCardsModelStoreContainer">
           <EntitySet Name="Tags" EntityType="VCardsModel.Store.Tags" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TagsWords" EntityType="VCardsModel.Store.TagsWords" store:Type="Tables" Schema="dbo" />
@@ -54,6 +54,7 @@
           <Property Name="Name" Type="nchar" MaxLength="20" />
           <Property Name="LastName" Type="nchar" MaxLength="20" />
           <Property Name="UILanguage" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="SocialId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Words">
           <Key>
@@ -117,8 +118,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VCardsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -162,6 +162,7 @@
           <Property Name="UILanguage" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
           <NavigationProperty Name="Tags" Relationship="VCardsModel.FK_Tags_Users" FromRole="Users" ToRole="Tags" />
           <NavigationProperty Name="Words" Relationship="VCardsModel.FK_Words_Users" FromRole="Users" ToRole="Words" />
+          <Property Type="Guid" Name="SocialId" Nullable="true" />
         </EntityType>
         <EntityType Name="Word">
           <Key>
@@ -225,6 +226,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="VCardsModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="SocialId" ColumnName="SocialId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="Points" ColumnName="Points" />
@@ -272,7 +274,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
