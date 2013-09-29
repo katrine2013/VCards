@@ -32,8 +32,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Tag" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserId" Type="nchar" MaxLength="10" />
+          <Property Name="Tag" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TagsWords">
           <Key>
@@ -49,10 +49,11 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
-          <Property Name="Points" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Points" Type="int" Nullable="false" />
           <Property Name="Tocken" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" />
-          <Property Name="LastName" Type="nchar" MaxLength="10" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="LastName" Type="nchar" MaxLength="20" />
+          <Property Name="UILanguage" Type="nchar" Nullable="false" MaxLength="10" />
         </EntityType>
         <EntityType Name="Words">
           <Key>
@@ -70,13 +71,13 @@
         </EntityType>
         <Association Name="FK_Tags_Users">
           <End Role="Users" Type="VCardsModel.Store.Users" Multiplicity="1" />
-          <End Role="Tags" Type="VCardsModel.Store.Tags" Multiplicity="0..1" />
+          <End Role="Tags" Type="VCardsModel.Store.Tags" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Tags">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -106,13 +107,13 @@
         </Association>
         <Association Name="FK_Words_Users">
           <End Role="Users" Type="VCardsModel.Store.Users" Multiplicity="1" />
-          <End Role="Words" Type="VCardsModel.Store.Words" Multiplicity="0..1" />
+          <End Role="Words" Type="VCardsModel.Store.Words" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Words">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -143,8 +144,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Tag1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="UserId" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Tag1" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="VCardsModel.FK_Tags_Users" FromRole="Tags" ToRole="Users" />
           <NavigationProperty Name="Words" Relationship="VCardsModel.TagsWords" FromRole="Tags" ToRole="Words" />
         </EntityType>
@@ -154,12 +155,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Points" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
           <Property Name="Tocken" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
-          <Property Name="LastName" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Tag" Relationship="VCardsModel.FK_Tags_Users" FromRole="Users" ToRole="Tags" />
-          <NavigationProperty Name="Word" Relationship="VCardsModel.FK_Words_Users" FromRole="Users" ToRole="Words" />
+          <Property Name="Name" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="LastName" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="UILanguage" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Tags" Relationship="VCardsModel.FK_Tags_Users" FromRole="Users" ToRole="Tags" />
+          <NavigationProperty Name="Words" Relationship="VCardsModel.FK_Words_Users" FromRole="Users" ToRole="Words" />
         </EntityType>
         <EntityType Name="Word">
           <Key>
@@ -179,25 +181,25 @@
         </EntityType>
         <Association Name="FK_Tags_Users">
           <End Role="Users" Type="VCardsModel.User" Multiplicity="1" />
-          <End Role="Tags" Type="VCardsModel.Tag" Multiplicity="0..1" />
+          <End Role="Tags" Type="VCardsModel.Tag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Tags">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Words_Users">
           <End Role="Users" Type="VCardsModel.User" Multiplicity="1" />
-          <End Role="Words" Type="VCardsModel.Word" Multiplicity="0..1" />
+          <End Role="Words" Type="VCardsModel.Word" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Words">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -229,6 +231,7 @@
                 <ScalarProperty Name="Tocken" ColumnName="Tocken" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UILanguage" ColumnName="UILanguage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

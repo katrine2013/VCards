@@ -14,14 +14,21 @@ namespace VCardsDbConnection
     
     public partial class User
     {
+        public User()
+        {
+            this.Tags = new HashSet<Tag>();
+            this.Words = new HashSet<Word>();
+        }
+    
         public int Id { get; set; }
         public System.DateTime LastUpdate { get; set; }
-        public string Points { get; set; }
+        public int Points { get; set; }
         public System.Guid Tocken { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+        public string UILanguage { get; set; }
     
-        public virtual Tag Tag { get; set; }
-        public virtual Word Word { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Word> Words { get; set; }
     }
 }

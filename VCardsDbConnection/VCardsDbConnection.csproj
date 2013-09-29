@@ -74,13 +74,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Db.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Db.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Db.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Db.edmx</DependentUpon>
