@@ -1,6 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = Resources.Resource.HomePage;
+    ViewBag.Message = Resources.Resource.Advertisment;
 }
 @section featured {
     <section class="featured">
@@ -10,6 +11,7 @@
                 <h2>@ViewBag.Message</h2>
             </hgroup>
             <p>
+                <img src="~/Images/logo.png"/>
                 To learn more about ASP.NET MVC visit
                 <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
                 The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.

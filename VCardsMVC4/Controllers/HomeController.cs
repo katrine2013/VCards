@@ -19,7 +19,7 @@ namespace VCardsMVC4.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = @Resources.Resource.Advertisment;
 
             return View();
         }
@@ -45,21 +45,29 @@ namespace VCardsMVC4.Controllers
             ViewBag.Message = "Your app description page.";
             if(ModelState.IsValid)
             {
-                using (VCardsEntities db = new VCardsEntities())
+                try
                 {
-                    db.Words.Add(new Word()
-                                     {
-                                         FailsCount = 0,
-                                         SucceedsCount = 0,
-                                         IsIdiom = false,
-                                         ModifyDate = DateTime.UtcNow,
-                                         Word1 = newWord.Word,
-                                         Translation = newWord.Translation,
-                                         Uid = new Guid(),
-                                         UserId = Convert.ToInt32(User.Identity.Name)
-                                     });
-                    db.SaveChanges();
+                    using (VCardsEntities db = new VCardsEntities())
+                    {
+                        db.Words.Add(new Word()
+                        {
+                            FailsCount = 0,
+                            SucceedsCount = 0,
+                            IsIdiom = false,
+                            ModifyDate = DateTime.UtcNow,
+                            Word1 = newWord.Word,
+                            Translation = newWord.Translation,
+                            Uid = new Guid(),
+                            UserId = Convert.ToInt32(User.Identity.Name)
+                        });
+                        db.SaveChanges();
+                    }
                 }
+                catch (Exception ex)
+                {
+                    
+                }
+                
             }
 
             return View(newWord);

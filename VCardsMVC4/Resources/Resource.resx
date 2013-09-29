@@ -123,6 +123,9 @@
   <data name="AddWord" xml:space="preserve">
     <value>Добавить лексику</value>
   </data>
+  <data name="Advertisment" xml:space="preserve">
+    <value>Изучаем языки играючи</value>
+  </data>
   <data name="HomePage" xml:space="preserve">
     <value>Главная страница</value>
   </data>

@@ -49,50 +49,50 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="DB.Context.cs">
+    <Compile Include="Dbdmx.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.Context.tt</DependentUpon>
+      <DependentUpon>Dbdmx.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB.cs">
+    <Compile Include="Dbdmx.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Dbdmx.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB.Designer.cs">
+    <Compile Include="Dbdmx.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.edmx</DependentUpon>
+      <DependentUpon>Dbdmx.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Dbdmx.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Dbdmx.tt</DependentUpon>
     </Compile>
     <Compile Include="Word.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>Dbdmx.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="DB.edmx">
+    <EntityDeploy Include="Dbdmx.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DB.Designer.cs</LastGenOutput>
+      <LastGenOutput>Dbdmx.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DB.Context.tt">
+    <None Include="Dbdmx.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.Context.cs</LastGenOutput>
+      <DependentUpon>Dbdmx.edmx</DependentUpon>
+      <LastGenOutput>Dbdmx.Context.cs</LastGenOutput>
     </None>
-    <None Include="DB.edmx.diagram">
-      <DependentUpon>DB.edmx</DependentUpon>
+    <None Include="Dbdmx.edmx.diagram">
+      <DependentUpon>Dbdmx.edmx</DependentUpon>
     </None>
-    <None Include="DB.tt">
+    <None Include="Dbdmx.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.cs</LastGenOutput>
+      <DependentUpon>Dbdmx.edmx</DependentUpon>
+      <LastGenOutput>Dbdmx.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
